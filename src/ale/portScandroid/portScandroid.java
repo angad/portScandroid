@@ -34,17 +34,30 @@ public class portScandroid extends Activity {
         		//Button already clicked.. kill scan, reset.
         		if(scanButton.getText() == "Stop"){
         				sh.destroy();
-        				scanButton.setText("Scan!");
+        				scanButton.setText("Scan");
         				return;
         		}
+        		
+        		int fromval;
+        		int toval;
         	
         		//Get the elements from the form
         		final EditText hostname = (EditText) findViewById(R.id.hostname);
         		String host = hostname.getText().toString();
         		final EditText from = (EditText) findViewById(R.id.from);
-        		int fromval = new Integer(from.getText().toString()).intValue();
+        		String froom = from.getText().toString();
+        		if (froom.length() != 0) { 
+        			fromval = new Integer(from.getText().toString()).intValue();}
+        		else{
+        			return;
+        		}
         		final EditText to = (EditText) findViewById(R.id.to);
-        		int toval = new Integer(to.getText().toString()).intValue();
+        		String tooo = to.getText().toString();
+        		if (tooo.length() != 0) { 
+        			toval = new Integer(to.getText().toString()).intValue();}
+        		else{
+        			return;
+        		}
         		final CheckBox udp = (CheckBox) findViewById(R.id.udp);
         		boolean udpmode = udp.isChecked();
         		final TextView result = (TextView) findViewById(R.id.result);
@@ -57,7 +70,7 @@ public class portScandroid extends Activity {
              	       
              	       if(sh.getDone()){
            				sh.destroy();
-        				scanButton.setText("Scan!");
+        				scanButton.setText("Scan");
         				return;
              	       }
              	       
@@ -154,6 +167,12 @@ public class portScandroid extends Activity {
 	public void destroy(){
 		//Bitch get out of my car I don't love you
 		scan.stop();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		done = true;
 	}
 	

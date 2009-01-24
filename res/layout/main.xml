@@ -48,7 +48,7 @@ android:layout_y="51px"
 android:id="@+id/scan"
 android:layout_width="92px"
 android:layout_height="40px"
-android:text="Scan!"
+android:text="Scan"
 android:layout_x="171px"
 android:layout_y="107px"
 >

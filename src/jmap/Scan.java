@@ -380,16 +380,19 @@ public class Scan extends Observable implements Observer {
 		//wait for all results to come back
 		while(this.hostsScanned < this.hostsToScan && !stopped){
 			try{
-				Thread.sleep(1500);
+				Thread.sleep(750);
 			}
 			catch(Exception e){
 				;
 			}
 		}
 		if (stopped){
-			resultsString = "Scanning stopped, results so far:\n\n" 
+			resultsString = "Scanning stopped.\n\n" 
 						   + resultsString;
 		}
+		
+		
+		
 		stopped = false; //reset switch
 		return resultsString; //this final results
 	}
@@ -501,7 +504,7 @@ public class Scan extends Observable implements Observer {
 	        try {
 	            resultsString +=
 	                 InetAddress.getByName(
-                     ((ScanHost)o).getHostname()).getHostName() + "(" +
+                     ((ScanHost)o).getHostname()).getHostName() + " (" +
 	                 InetAddress.getByName(((ScanHost)o).getHostname())
                      .getHostAddress() + ")\n";
 	        }
